@@ -5,7 +5,7 @@
 
     @if ($buku->cover)
     <div style="text-align: center;">
-        <img src="{{asset('storage/' .$bukus->cover)}}" alt="" srcset="">
+        <img src="{{asset('storage/' .$buku->cover)}}" alt="" srcset="">
     </div>
     @endif
 

@@ -38,9 +38,14 @@
 
         <div class="form-group">
             <label for="">Gambar Sampul:</label>
+            @if ($buku->cover)
+            <img src="{{asset('storage/'. $buku->cover) }}" alt="Cover Lama" srcset="" width="90">
+            @endif
             <input type="file" name="file_cover" id="">
         </div>
 
+
+        <input type="hidden" name="cover_lama" value="{{$buku->cover}}">
     <button type="submit" class="tombol">Submit</button>
 </form>
 

@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Penerbit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
@@ -25,7 +26,7 @@ class BukuController extends Controller
     {
         $kategori = Kategori::all();
         $penerbit = Penerbit::all();
-        return view('buku.create',compact('kategori','penerbit'));
+        return view('buku.create', compact('kategori', 'penerbit'));
     }
 
     /**
@@ -43,9 +44,8 @@ class BukuController extends Controller
         ]);
 
         // Upload File
-        if($request->hasFile('file_cover'))
-        {
-            $validateData['cover'] = $request->file('file_cover')->store('cover','public');
+        if ($request->hasFile('file_cover')) {
+            $validateData['cover'] = $request->file('file_cover')->store('cover', 'public');
         }
 
         //hapus file_cover dari array validasi
@@ -69,7 +69,7 @@ class BukuController extends Controller
     {
         $kategori = Kategori::all();
         $penerbit = Penerbit::all();
-        return view('buku.edit', compact('buku','penerbit','kategori'));
+        return view('buku.edit', compact('buku', 'penerbit', 'kategori'));
     }
 
     /**
@@ -83,7 +83,19 @@ class BukuController extends Controller
             'tahun_terbit' => 'required|integer:4',
             'kategori_id' => 'required',
             'penerbit_id' => 'required',
+            'file_cover' => 'nullable|image|mimes:jpg,jpeg,png|max:1024',
         ]);
+
+        // Upload File
+        if ($request->hasFile('file_cover')) {
+            $validateData['cover'] = $request->file('file_cover')->store('cover', 'public');
+
+            if ($request->cover_lama) {
+                Storage::delete('public/' . $request->cover_lama);
+            }
+        }
+        //hapus file_cover dari array validasi
+        unset($validateData['file_cover']);
 
         $buku->update($validateData);
         return redirect()->route('buku.index');
@@ -94,6 +106,10 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
+        if ($buku->cover && Storage::exists('public/' . $buku->cover)) {
+            Storage::delete('public/' . $buku->cover);
+        }
+
         $buku->delete();
         return redirect()->route('buku.index');
     }
