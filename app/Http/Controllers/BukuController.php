@@ -1,0 +1,100 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Penerbit;
+use Illuminate\Http\Request;
+
+class BukuController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $allBuku = Buku::all();
+        return view('buku.index', compact('allBuku'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $kategori = Kategori::all();
+        $penerbit = Penerbit::all();
+        return view('buku.create',compact('kategori','penerbit'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validateData = $request->validate([
+            'judul' => 'required|max:100',
+            'pengarang' => 'required|max:100',
+            'tahun_terbit' => 'required|integer:4',
+            'kategori_id' => 'required',
+            'penerbit_id' => 'required',
+            'file_cover' => 'nullable|image|mimes:jpg,jpeg,png|max:1024',
+        ]);
+
+        // Upload File
+        if($request->hasFile('file_cover'))
+        {
+            $validateData['cover'] = $request->file('file_cover')->store('cover','public');
+        }
+
+        //hapus file_cover dari array validasi
+        unset($validateData['file_cover']);
+
+        Buku::create($validateData);
+        return redirect()->route('buku.index');
+    }
+    /**
+     * Display the specified resource.
+     */
+    public function show(Buku $buku)
+    {
+        return view('buku.show', compact('buku'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Buku $buku)
+    {
+        $kategori = Kategori::all();
+        $penerbit = Penerbit::all();
+        return view('buku.edit', compact('buku','penerbit','kategori'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Buku $buku)
+    {
+        $validateData = $request->validate([
+            'judul' => 'required|max:100',
+            'pengarang' => 'required|max:100',
+            'tahun_terbit' => 'required|integer:4',
+            'kategori_id' => 'required',
+            'penerbit_id' => 'required',
+        ]);
+
+        $buku->update($validateData);
+        return redirect()->route('buku.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Buku $buku)
+    {
+        $buku->delete();
+        return redirect()->route('buku.index');
+    }
+}
