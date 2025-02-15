@@ -1,6 +1,8 @@
 @include('layout.header')
 <h3>Detail Buku</h3>
 
+//Template
+
 <a href="{{route('buku.create')}}" class="tombol">Tambah</a>
 
     @if ($buku->cover)
