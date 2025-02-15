@@ -49,4 +49,4 @@
     <button type="submit" class="tombol">Submit</button>
 </form>
 
-@include('layout.footer')
+@include('layout.footer') 

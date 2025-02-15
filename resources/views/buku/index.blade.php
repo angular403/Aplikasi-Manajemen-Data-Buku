@@ -42,4 +42,9 @@
         @endforeach
     </tbody>
 </table>
+
+<div style="margin-top:10px; display:flex; justify-content:center;">
+    {{$allBuku->links('vendor.pagination.buatanku')}}
+</div>
+
 @include('layout.footer')

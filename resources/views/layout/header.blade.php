@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aplikasi Manajemen Buku</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> --}}
 </head>
 
 <body>
