@@ -1,6 +1,13 @@
 @include('layout.header')
 <h3>Kategori</h3>
-<a href="{{ route('kategori.create') }}" class="tombol">Tambah Kategori</a>
+<div style="display: flex; justify-content:space-between; align-items:center;">
+    <a href="{{ route('kategori.create') }}" class="tombol">Tambah</a>
+
+    <form action="{{ route('kategori.index') }}" method="get">
+        <input type="text" name="q" id="" style="padding: 5px; margin-right:8px;"  placeholder="Cari Disini..." autocomplete="off">
+        <button type="submit" class="tombol">Cari</button>
+    </form>
+</div>
 
 <table>
     <thead>

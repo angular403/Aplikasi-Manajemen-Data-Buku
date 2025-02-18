@@ -10,9 +10,20 @@ class PenerbitController extends Controller
    /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $allPenerbit = Penerbit::all();
+        $query = $request->input('q');
+
+        if($query)
+        {
+            $allPenerbit = Penerbit::when($query, function($queryBuilder) use ($query){
+                $queryBuilder->where('nama_penerbit','like','%' . $query . '%');
+            })->paginate(5);
+            $allPenerbit->appends(['q' => $query]);
+        }else{
+            $allPenerbit = Penerbit::latest()->paginate(10);
+        }
+
         return view('penerbit.index', compact('allPenerbit'));
     }
 

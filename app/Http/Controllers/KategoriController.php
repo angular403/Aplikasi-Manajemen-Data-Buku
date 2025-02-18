@@ -10,9 +10,20 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $allKategori = Kategori::all();
+        $query = $request->input('q');
+
+        if($query)
+        {
+            $allKategori = Kategori::when($query, function($queryBuilder) use ($query){
+                $queryBuilder->where('nama_kategori','like','%' . $query . '%');
+            })->paginate(5);
+            $allKategori->appends(['q' => $query]);
+        }else{
+            $allKategori = Kategori::latest()->paginate(10);
+        }
+        // $allKategori = Kategori::all();
         return view('kategori.index', compact('allKategori'));
     }
 
