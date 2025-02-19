@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aplikasi Manajemen Data Buku</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons" />
     @vite('resources/css/app.css')
 </head>
@@ -85,3 +85,16 @@
             {{-- Main Content --}}
             <main class="flex-1 p-6">
                 <div class="bg-white rounded shadow p-4">
+                    <h2 class="text-xl font-bold">Selamat Datang {{ Auth::user()->name }}</h2>
+                    <p class="font-medium">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, officia quod! Unde consequatur
+                        veniam consequuntur nihil perferendis sunt dolorem, natus, praesentium magnam porro
+                        necessitatibus. Libero cum rem delectus quas dignissimos.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

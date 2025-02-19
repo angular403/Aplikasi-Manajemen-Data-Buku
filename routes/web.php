@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('kategori', KategoriController::class)->middleware('auth');
@@ -20,3 +20,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/login', [AuthManualController::class, 'index'])->name('login');
 Route::post('/login', [AuthManualController::class, 'loginProses'])->name('loginProses');
 Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');
+
+// Route Untuk Tes
+Route::get('/tes', function(){
+    return view('test');
+});
