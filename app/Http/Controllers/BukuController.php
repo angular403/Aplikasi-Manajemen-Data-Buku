@@ -27,10 +27,8 @@ class BukuController extends Controller
             })->paginate(10);
             $allBuku->appends(['q' => $query]);
         }else{
-            $allBuku = Buku::latest()->paginate(10);
+            $allBuku = Buku::latest()->paginate(5);
         }
-        // $allBuku = Buku::all();
-
         return view('buku.index', compact('allBuku'));
     }
 

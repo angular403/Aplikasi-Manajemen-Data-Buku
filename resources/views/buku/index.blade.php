@@ -9,7 +9,7 @@
     </form>
 </div>
 
-<table class="tabel-1">
+<table class="tabel-1 mb-3">
     <thead>
         <tr class="bg-gray-100">
             <th class="custom_th">No.</th>
