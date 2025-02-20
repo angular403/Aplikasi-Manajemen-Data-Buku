@@ -15,7 +15,6 @@ class BukuController extends Controller
      */
     public function index(Request $request)
     {
-
         $query = $request->input('q');
 
         if($query)
