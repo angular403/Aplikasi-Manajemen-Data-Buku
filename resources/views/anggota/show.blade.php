@@ -1,14 +1,25 @@
 @include('layout.header')
-<h3 class="judul-h3">Detail Kategori</h3>
 
-<a href="{{route('kategori.create')}}" class="tombol">Tambah</a>
-
+<div class="flex items-center justify-between">
+<h3 class="judul-h3">Detail Anggota</h3>
+    <a href="{{route('anggota.index')}}" class="tombol-abu">Kembali</a>
+</div>
     <table class="tabel-1">
         <tbody>
             <tr>
-                <td width="150px" class="px-4 py-2">Nama Kategori</td>
+                <td width="150px" class="px-4 py-2">Nama Anggota</td>
                 <td width="2px" class="px-4 py-2">:</td>
-                <td class="px-4 py-2">{{$kategori->nama_kategori}}</td>
+                <td class="px-4 py-2">{{$anggota->nama_anggota}}</td>
+            </tr>
+            <tr>
+                <td width="150px" class="px-4 py-2">Alamat</td>
+                <td width="2px" class="px-4 py-2">:</td>
+                <td class="px-4 py-2">{{$anggota->alamat}}</td>
+            </tr>
+            <tr>
+                <td width="150px" class="px-4 py-2">No.Telepon</td>
+                <td width="2px" class="px-4 py-2">:</td>
+                <td class="px-4 py-2">{{$anggota->no_telepon}}</td>
             </tr>
         </tbody>
     </table>

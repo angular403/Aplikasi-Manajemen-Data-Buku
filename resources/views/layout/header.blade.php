@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +52,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="flex-items-center p-2 rounded hover:bg-gray-700">
+                        <a href="{{route('peminjaman.index')}}" class="flex-items-center p-2 rounded hover:bg-gray-700">
                             <span class="material-icons">menu_book</span>
                             <span class="ml-3">Peminjaman Buku</span>
                         </a>

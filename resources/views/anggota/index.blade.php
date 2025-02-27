@@ -24,8 +24,10 @@
     <tbody>
         @foreach ($allAnggota as $key => $r)
             <tr>
-                <td class="custom_td">{{ $key + 1 }}</td>
+                <td class="custom_td">{{ $key + $allAnggota->firstItem() }}</td>
                 <td class="custom_td">{{ $r->nama_anggota }}</td>
+                <td class="custom_td">{{ $r->alamat }}</td>
+                <td class="custom_td">{{ $r->no_telepon }}</td>
                 <td class="custom_td">
                     <form action="{{ route('anggota.destroy', $r->id) }}" method="POST">
                         @csrf
